@@ -1,6 +1,7 @@
 import os
 from flask import Flask, request, jsonify
 import argparse
+import random
 from framework import ZTFramework
 
 app = Flask(__name__)
@@ -41,6 +42,7 @@ def get_resource():
     # ip_address = request.remote_addr
 
     # based on the test scenario the paramters are selected.
+    scenario = random.choice(list(TEST_SCENARIOS.keys())) # this enables random behaviour for load testing
     scenario_data = TEST_SCENARIOS[scenario]
     request_context = {"is_secure": scenario_data["is_secure"]}  # Assume HTTPS for now
     username = scenario_data["username"]
